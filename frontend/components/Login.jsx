@@ -1,11 +1,12 @@
-import React, { useState } from "react";
-import { Form, Button, Container, Row, Col } from "react-bootstrap";
+import React, { useState , useEffect } from "react";
+import { Form, Button, Container, Row, Col ,Card } from "react-bootstrap";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setUser } from "../redux/features/authSlice";
+import image2 from '../public/login.752Z.png';
 
 export default function Login() {
   const [formData, setFormData] = useState({
@@ -15,6 +16,17 @@ export default function Login() {
   });
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    handleResize(); 
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -65,11 +77,38 @@ export default function Login() {
   };
 
   return (
-    <Container className="mt-5">
-      <ToastContainer position="top-center" autoClose={3000} />
-      <Row className="justify-content-center">
-        <Col md={6}>
-          <h2 className="mb-4">Login</h2>
+    <div className=""
+  style={{
+    backgroundImage: isMobile ? "none" : `url(${image2})`,
+    backgroundColor: isMobile ? "#ffffff" : "transparent",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    minHeight: "90vh",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "end",
+  }}
+>
+  <Container fluid className="p-0">
+    <Row className="w-100 g-0">
+      <Col md={6}></Col>
+      <Col
+        md={6}
+        xs={12}
+        className="d-flex align-items-center justify-content-center"
+      >
+        <Card
+          className="p-4 shadow-lg rounded-4 animate__animated animate__fadeIn"
+          style={{
+            width: "100%",
+            maxWidth: "400px",
+            backgroundColor: "#fff",  
+          }}
+        >
+          <ToastContainer position="top-center" autoClose={3000} />
+          <h3 className="text-center mb-4 text-primary">
+            <i className="bi bi-box-arrow-in-right"></i> Login
+          </h3>
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3">
               <Form.Label>Email</Form.Label>
@@ -109,12 +148,15 @@ export default function Login() {
               </Form.Select>
             </Form.Group>
 
-            <Button type="submit" variant="primary">
+            <Button type="submit" variant="primary" className="w-100">
               Login
             </Button>
           </Form>
-        </Col>
-      </Row>
-    </Container>
+        </Card>
+      </Col>
+    </Row>
+  </Container>
+</div>
+
   );
 }

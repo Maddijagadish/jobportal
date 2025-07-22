@@ -1,9 +1,12 @@
-import React, { useState } from "react";
-import { Form, Button, Container, Row, Col } from "react-bootstrap";
+import React, { useState ,useEffect } from "react";
+import { Form, Button, Container, Row, Col , Card } from "react-bootstrap";
 import axios from "axios";
+import "animate.css";
+import "bootstrap-icons/font/bootstrap-icons.css";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import UploadButton from "../components/uploadButton.jsx";
+import image1 from '../public/Google_AI_Studio_2025-07-22T05_50_53.563Z.png';
 
 export default function Signup() {
   const [formData, setFormData] = useState({
@@ -13,6 +16,17 @@ export default function Signup() {
     password: "",
     role: "",
   });
+    const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    handleResize(); // check on load
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
 
   const [profilePic, setProfilePic] = useState(null);
   const navigate = useNavigate();
@@ -56,13 +70,36 @@ export default function Signup() {
   };
 
   return (
-    <Container className="mt-5">
-      <ToastContainer position="top-center" autoClose={3000} />
-      <Row className="justify-content-center">
-        <Col md={6}>
-          <h2>Sign Up</h2>
+    <div
+  style={{
+    backgroundImage: isMobile ? "none" : `url(${image1})`,
+    backgroundColor: isMobile ? "#ffffff" : "transparent",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    minHeight: "90vh",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "start",
+  }}
+>
+  <Container fluid>
+    <Row className="w-100">
+      {/* Left side (Form) */}
+      <Col md={6} className="d-flex align-items-center justify-content-center">
+        <Card
+          className="p-4 shadow-lg rounded-4 animate__animated animate__fadeIn"
+          style={{
+            width: "100%",
+            maxWidth: "500px",
+            backgroundColor: "rgba(#fff)",
+          }}
+        >
+          <ToastContainer position="top-center" autoClose={3000} />
+          <h3 className="text-center mb-4 text-primary">
+            <i className="bi bi-person-plus-fill"></i> Sign Up
+          </h3>
           <Form onSubmit={handleSubmit}>
-            <Form.Group className="mb-3">
+            <Form.Group>
               <Form.Label>Full Name</Form.Label>
               <Form.Control
                 type="text"
@@ -74,7 +111,7 @@ export default function Signup() {
               />
             </Form.Group>
 
-            <Form.Group className="mb-3">
+            <Form.Group>
               <Form.Label>Email</Form.Label>
               <Form.Control
                 type="email"
@@ -85,7 +122,8 @@ export default function Signup() {
                 autoComplete="username"
               />
             </Form.Group>
-            <Form.Group className="mb-3">
+
+            <Form.Group>
               <Form.Label>Phone Number</Form.Label>
               <Form.Control
                 type="tel"
@@ -96,7 +134,8 @@ export default function Signup() {
                 autoComplete="tel"
               />
             </Form.Group>
-            <Form.Group className="mb-3">
+
+            <Form.Group>
               <Form.Label>Password</Form.Label>
               <Form.Control
                 type="password"
@@ -107,7 +146,8 @@ export default function Signup() {
                 autoComplete="new-password"
               />
             </Form.Group>
-            <Form.Group className="mb-4">
+
+            <Form.Group>
               <Form.Label>Role</Form.Label>
               <Form.Select
                 name="role"
@@ -120,13 +160,12 @@ export default function Signup() {
                 <option value="recruiter">Recruiter</option>
               </Form.Select>
             </Form.Group>
-            <Form.Group className="mb-4">
+
+            <Form.Group className="mt-3">
               <UploadButton onFileSelect={handleFileSelect} />
             </Form.Group>
-            <Button type="submit" variant="primary">
-              Register
-            </Button>
-            <Form.Group className="mb-3">
+
+            <Form.Group className="mt-3">
               <Form.Check
                 required
                 label="Agree to terms and conditions"
@@ -134,9 +173,21 @@ export default function Signup() {
                 feedbackType="invalid"
               />
             </Form.Group>
+
+            <Button type="submit" variant="primary" className="mt-3 w-100">
+              Register
+            </Button>
           </Form>
-        </Col>
-      </Row>
-    </Container>
+        </Card>
+      </Col>
+
+      {/* Right side (empty) */}
+      <Col md={6}></Col>
+    </Row>
+  </Container>
+</div>
+
+
+
   );
 }
