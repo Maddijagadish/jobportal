@@ -62,9 +62,9 @@ export const logout = (req, res) => {
   res.clearCookie("token", {
     httpOnly: true,
     sameSite: "strict",
-    maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+    maxAge: 7 * 24 * 60 * 60 * 1000, 
     secure: false,
-    path: "/",   // must match the login path
+    path: "/",  
   });
   res.status(200).json({ message: "Logged out successfully" });
 };

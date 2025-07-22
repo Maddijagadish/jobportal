@@ -1,13 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  Container,
-  Row,
-  Col,
-  Card,
-  Button,
-  Form,
-  Spinner,
-} from "react-bootstrap";
+import {Container,Row,Col,Card,Button,Form,Spinner,} from "react-bootstrap";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import { useSelector } from "react-redux";
@@ -28,21 +20,9 @@ export default function Jobs() {
   const reduxUser = useSelector((state) => state.auth.user);
   const navigate = useNavigate();
 
-  const locations = [
-    "Hyderabad",
-    "Bangalore",
-    "Viskhapatnam",
-    "Chennai",
-    "Remote",
-  ];
+  const locations = ["Hyderabad","Bangalore","Viskhapatnam","Chennai","Remote",];
   const jobTypes = ["Full-Time", "Part-Time", "Internship", "Freelance"];
-  const titles = [
-    "Software Developer",
-    "Data Analyst",
-    "Frontend Developer",
-    "Backend Developer",
-    "Full Stack Developer",
-  ];
+  const titles = ["Software Developer","Data Analyst","Frontend Developer","Backend Developer","Full Stack Developer",];
 
   useEffect(() => {
     fetchJobs();
@@ -55,7 +35,7 @@ export default function Jobs() {
       setFilteredJobs(res.data.jobs);
     } catch (err) {
       toast.error(err.response?.data?.message || "Failed to fetch jobs");
-      console.error("Error fetching jobs:", err); // Preserve console
+      console.error("Error fetching jobs:", err);
     } finally {
       setLoading(false);
     }
@@ -126,11 +106,7 @@ export default function Jobs() {
         </div>
       ) : (
         <Row>
-          <Col
-            xs={12}
-            sm={4}
-            md={4}
-            lg={3}
+          <Col xs={12} sm={4} md={4} lg={3}
             style={{
               backgroundColor: "#f8f9fa",
               color: "#212529",
@@ -138,7 +114,6 @@ export default function Jobs() {
               height: "100%",
               borderRadius: "0.5rem",
               marginBottom: "1rem",
-              
             }}
           >
             <h4 style={{ fontWeight: "700" }}>🔎 Filter Jobs</h4>
@@ -189,7 +164,6 @@ export default function Jobs() {
             </div>
           </Col>
 
-          {/* Jobs */}
           <Col xs={12} sm={8} md={8} lg={9} style={{ overflowY: "auto", height: "100%" }}>
             <h3
               style={{

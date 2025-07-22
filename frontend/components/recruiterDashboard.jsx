@@ -108,38 +108,32 @@ export default function RecruiterDashboard() {
             <Form>
               <Form.Group className="mb-2">
                 <Form.Label>Title</Form.Label>
-                <Form.Control
-                  value={editJobData.title}
+                <Form.Control value={editJobData.title}
                   onChange={(e) => setEditJobData({ ...editJobData, title: e.target.value })}
                 />
               </Form.Group>
               <Form.Group className="mb-2">
                 <Form.Label>Description</Form.Label>
-                <Form.Control
-                  as="textarea"
-                  rows={3}
+                <Form.Control as="textarea" rows={3}
                   value={editJobData.description}
                   onChange={(e) => setEditJobData({ ...editJobData, description: e.target.value })}
                 />
               </Form.Group>
               <Form.Group className="mb-2">
                 <Form.Label>Location</Form.Label>
-                <Form.Control
-                  value={editJobData.location}
+                <Form.Control value={editJobData.location}
                   onChange={(e) => setEditJobData({ ...editJobData, location: e.target.value })}
                 />
               </Form.Group>
               <Form.Group className="mb-2">
                 <Form.Label>Job Type</Form.Label>
-                <Form.Control
-                  value={editJobData.jobType}
+                <Form.Control value={editJobData.jobType}
                   onChange={(e) => setEditJobData({ ...editJobData, jobType: e.target.value })}
                 />
               </Form.Group>
               <Form.Group className="mb-2">
                 <Form.Label>Salary Range</Form.Label>
-                <Form.Control
-                  value={editJobData.salaryRange}
+                <Form.Control value={editJobData.salaryRange}
                   onChange={(e) => setEditJobData({ ...editJobData, salaryRange: e.target.value })}
                 />
               </Form.Group>

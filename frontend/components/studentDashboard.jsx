@@ -15,7 +15,7 @@ export default function StudentDashboard() {
       setJobs(res.data.jobs);
     } catch (err) {
       toast.error(err.response?.data?.message || "Failed to fetch jobs");
-      console.error("Error fetching jobs:", err); // console preserved ✅
+      console.error("Error fetching jobs:", err);
     }
   };
 

@@ -76,11 +76,8 @@ export default function Profile() {
         <Col md={6}>
           <Card className="p-3 shadow-sm">
             <div className="text-center mb-3">
-              <img
-                src={userData.profilePic || "https://via.placeholder.com/150"}
-                alt="Profile"
-                width="150"
-                height="150"
+              <img src={userData.profilePic || "https://via.placeholder.com/150"}
+                alt="Profile" width="150" height="150"
                 style={{ borderRadius: "50%" }}
               />
             </div>
@@ -103,8 +100,7 @@ export default function Profile() {
               <>
                 <Form.Group className="mb-2">
                   <Form.Label>Full Name</Form.Label>
-                  <Form.Control
-                    name="fullName"
+                  <Form.Control name="fullName"
                     value={updatedData.fullName !== undefined ? updatedData.fullName : userData.fullName}
                     onChange={handleChange}
                   />
@@ -112,8 +108,7 @@ export default function Profile() {
 
                 <Form.Group className="mb-2">
                   <Form.Label>Phone Number</Form.Label>
-                  <Form.Control
-                    name="phoneNumber"
+                  <Form.Control name="phoneNumber"
                     value={updatedData.phoneNumber !== undefined ? updatedData.phoneNumber : userData.phoneNumber}
                     onChange={handleChange}
                   />

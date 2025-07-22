@@ -28,7 +28,7 @@ export default function AddJob({ onJobPosted }) {
         jobType: "",
         salaryRange: "",
       });
-      onJobPosted();  // Refresh jobs after posting
+      onJobPosted(); 
     } catch (err) {
       toast.error(err.response?.data?.message || "Failed to post job");
     }

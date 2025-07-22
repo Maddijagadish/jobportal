@@ -22,7 +22,7 @@ export default function Signup() {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
     };
-    handleResize(); // check on load
+    handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -84,7 +84,6 @@ export default function Signup() {
 >
   <Container fluid>
     <Row className="w-100">
-      {/* Left side (Form) */}
       <Col md={6} className="d-flex align-items-center justify-content-center">
         <Card
           className="p-4 shadow-lg rounded-4 animate__animated animate__fadeIn"
@@ -153,8 +152,7 @@ export default function Signup() {
                 name="role"
                 value={formData.role}
                 onChange={handleChange}
-                required
-              >
+                required>
                 <option value="">Select Role</option>
                 <option value="student">Student</option>
                 <option value="recruiter">Recruiter</option>
@@ -180,8 +178,6 @@ export default function Signup() {
           </Form>
         </Card>
       </Col>
-
-      {/* Right side (empty) */}
       <Col md={6}></Col>
     </Row>
   </Container>

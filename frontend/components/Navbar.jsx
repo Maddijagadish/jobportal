@@ -17,9 +17,9 @@ export default function CusNavbar() {
     await axios.post("http://localhost:3000/jagadish/logout", {}, {
       withCredentials: true,
     });
-    dispatch(setUser(null)); // clear redux user
+    dispatch(setUser(null)); 
     toast.success("Logged out successfully");
-    navigate("/login");  // redirect to login
+    navigate("/login"); 
   } catch (err) {
     toast.error("Logout failed");
   }
